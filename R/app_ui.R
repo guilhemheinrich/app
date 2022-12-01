@@ -23,8 +23,12 @@ app_ui <- function(request) {
                                                            default_token = "Basic   dG9rZW46ZWI1ZTc4ZDM3ZmZmNGYzN2I2MDBiYzBlZTJjMjg2ZjA=")),
           shinydashboard::menuItem("Experimental serie selection",
                                    tabName = "experimental_serie",
-                                   mod_projects_ui("projects"),
-                                   mod_experimental_series_ui('experimental_series'))
+                                   mod_selectInput_GET_projects_ui("projects"),
+                                   mod_selectInput_GET_experimental_series_ui('experimental_series'),
+                                   mod_selectInput_GET_compartment_replicates_ui('compartment_replicates'),
+                                   mod_selectInput_GET_monitored_measure_types_ui('monitored_measure_types')
+                                   )
+
         )
       ),
       shinydashboard::dashboardBody(h1('nothing'))

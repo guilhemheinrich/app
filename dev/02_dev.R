@@ -22,16 +22,15 @@ usethis::use_package("jsonlite")
 ## Create a module infrastructure in R/
 ## Reusable module
 golem::add_module(name = "authentification", with_test = TRUE)
-golem::add_module(name = "projects", with_test = TRUE)
 
-## Agencment module (not easily reusable)
-# golem::add_module(name = "experimental_series_select", with_test = TRUE)
+golem::add_module(name = "selectInput_GET_projects")
+golem::add_module(name = "selectInput_GET_experimental_series")
+golem::add_module(name = "selectInput_GET_measures")
+golem::add_module(name = "selectInput_GET_compartment_replicates")
+golem::add_module(name = "selectInput_GET_monitored_measure_types")
 
-golem::add_module(name = "experimental_series", with_test = TRUE)
-golem::add_module(name = "replicates", with_test = TRUE)
-golem::add_module(name = "measures", with_test = TRUE)
+## Specific module
 
-golem::add_module(name = "jointed_selector", with_test = TRUE)
 
 ## Add helper functions ----
 ## Creates fct_* and utils_*
