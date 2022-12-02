@@ -48,7 +48,7 @@ app_server <- function(input, output, session) {
   })
 
   selectedExperimentalSerieId <- reactiveVal("None")
-  selectedAllLocations = shiny::reactiveVal(list())
+  selectedAllLocations <- shiny::reactiveVal(list())
   shiny::observeEvent(experimental_serie$selected(), {
     if (shiny::isTruthy(experimental_serie$selected())) {
       selectedExperimentalSerieId(experimental_serie$selected()[["@id"]])
@@ -60,11 +60,35 @@ app_server <- function(input, output, session) {
     }
   })
 
-shiny::observeEvent(compartment_replicates$selected(), {
-  if (shiny::isTruthy(compartment_replicates$selected())) {
-    # selectedExperimentalSerieId(compartment_replicates$selected()[["@id"]])
-    print("compartment_replicates$selected()")
-    print(compartment_replicates$selected())
-  }
-})
+  selectedAllReplicates <- shiny::reactiveVal(list())
+  shiny::observeEvent(compartment_replicates$selected(), {
+    if (shiny::isTruthy(compartment_replicates$selected())) {
+      # selectedExperimentalSerieId(compartment_replicates$selected()[["@id"]])
+      print("compartment_replicates$selected()$id")
+      print(compartment_replicates$selected()$id)
+      selectedAllReplicates(compartment_replicates$selected()$id)
+    }
+  })
+
+  selectedAllMonitoredMeasureTypes <- shiny::reactiveVal(list())
+  shiny::observeEvent(monitored_measure_types$selected(), {
+    if (shiny::isTruthy(monitored_measure_types$selected())) {
+      # selectedExperimentalSerieId(compartment_replicates$selected()[["@id"]])
+      print("monitored_measure_types$selected()$id")
+      print(monitored_measure_types$selected()$id)
+      selectedAllMonitoredMeasureTypes(monitored_measure_types$selected()$id)
+    }
+  })
+
+  shiny::observeEvent(input$load_data,{
+    get_data(
+      host = authentification$host(),
+      token = authentification$token(),
+      experimental_serie_id = selectedExperimentalSerieId(),
+      type = 1,
+      with_empty_columns = 1,
+      replicate_ids = selectedAllReplicates(),
+      monitored_measure_type_ids = selectedAllMonitoredMeasureTypes()
+    )
+  })
 }

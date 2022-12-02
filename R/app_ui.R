@@ -26,7 +26,8 @@ app_ui <- function(request) {
                                    mod_selectInput_GET_projects_ui("projects"),
                                    mod_selectInput_GET_experimental_series_ui('experimental_series'),
                                    mod_selectInput_GET_compartment_replicates_ui('compartment_replicates'),
-                                   mod_selectInput_GET_monitored_measure_types_ui('monitored_measure_types')
+                                   mod_selectInput_GET_monitored_measure_types_ui('monitored_measure_types'),
+                                   actionButton("load_data", "Load Data")
                                    )
 
         )

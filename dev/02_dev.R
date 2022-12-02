@@ -35,6 +35,7 @@ golem::add_module(name = "selectInput_GET_monitored_measure_types")
 ## Add helper functions ----
 ## Creates fct_* and utils_*
 golem::add_fct("js_spread_operator", with_test = TRUE)
+golem::add_fct("get_data")
 golem::add_utils("compute_reactive_in_list", with_test = TRUE)
 golem::add_utils("parse_query_parameters", with_test = TRUE)
 golem::add_utils("http_status", with_test = TRUE)
