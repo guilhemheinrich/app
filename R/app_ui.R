@@ -32,7 +32,13 @@ app_ui <- function(request) {
 
         )
       ),
-      shinydashboard::dashboardBody(h1('nothing'))
+      shinydashboard::dashboardBody(
+        h1('Esquisse'),
+        esquisse::esquisse_ui(
+          id = "esquisse",
+          header = FALSE # dont display gadget title
+        )
+        )
     )
 
     # navbarPage("Deepomics explorer",

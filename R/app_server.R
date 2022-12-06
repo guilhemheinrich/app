@@ -80,8 +80,9 @@ app_server <- function(input, output, session) {
     }
   })
 
+  data <- shiny::reactiveValues(data = data.frame(), name = "data")
   shiny::observeEvent(input$load_data,{
-    get_data(
+    result_df <- get_data(
       host = authentification$host(),
       token = authentification$token(),
       experimental_serie_id = selectedExperimentalSerieId(),
@@ -90,5 +91,11 @@ app_server <- function(input, output, session) {
       replicate_ids = selectedAllReplicates(),
       monitored_measure_type_ids = selectedAllMonitoredMeasureTypes()
     )
+    data$data <- result_df
   })
+
+  results <- esquisse::esquisse_server(
+    id = "esquisse",
+    data_rv = data
+  )
 }
